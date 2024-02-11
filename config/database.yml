@@ -77,12 +77,24 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+#production:
+#  <<: *default
+#  host: localhost
+#  adapter: postgresql
+#  encoding: utf8
+#  pool: 5
+#  database: <%= Rails.application.credentials.dig(:database, :name) %>
+#  username: <%= Rails.application.credentials.dig(:database, :user) %>
+#  password: <%= Rails.application.credentials.dig(:database, :password) %>
+
 production:
   <<: *default
-  host: localhost
+  url: <%= ENV['DB_URL'] %> # You can use an environment variable for the URL.
+  host: <%= ENV['DB_HOST'] || 'localhost' %> # Default to localhost if the environment variable isn't set.
+  port: <%= ENV['DB_PORT'] || 5432 %> # Default to the standard PostgreSQL port if the environment variable isn't set.
   adapter: postgresql
   encoding: utf8
-  pool: 5
-  database: production_database
-  username: <%= Rails.application.credentials.dig(:database, :user) %>
-  password: <%= Rails.application.credentials.dig(:database, :password) %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USER_NAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
