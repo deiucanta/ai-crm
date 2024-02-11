@@ -1,4 +1,4 @@
-class Api::V1::NotesController < Api::V1::Base
+class Api::V1::NotesController < Api::V1::BaseController
   before_action :set_notable, only: [:index, :create]
 
   def index
