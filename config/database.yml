@@ -89,12 +89,8 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['DB_URL'] %> # You can use an environment variable for the URL.
-  host: <%= ENV['DB_HOST'] || 'localhost' %> # Default to localhost if the environment variable isn't set.
-  port: <%= ENV['DB_PORT'] || 5432 %> # Default to the standard PostgreSQL port if the environment variable isn't set.
-  adapter: postgresql
-  encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: <%= ENV['DB_NAME'] %>
-  username: <%= ENV['DB_USER_NAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %> # e.g., ai-crm
+  username: <%= ENV['DATABASE_USERNAME'] %> # e.g., postgres
+  password: <%= ENV['DATABASE_PASSWORD'] %> # Your database password
+  host: <%= ENV['DATABASE_HOST'] %> # e.g., ai-crm_database
+  port: <%= ENV['DATABASE_PORT'] || 5432 %>
