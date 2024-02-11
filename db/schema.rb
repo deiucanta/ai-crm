@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_10_235226) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_11_224020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,4 +23,39 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_235226) do
     t.index ["bearer_token"], name: "index_api_keys_on_bearer_token", unique: true
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "notable_type", null: false
+    t.bigint "notable_id", null: false
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notable_type", "notable_id"], name: "index_notes_on_notable"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "person_company_connections", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_person_company_connections_on_company_id"
+    t.index ["person_id"], name: "index_person_company_connections_on_person_id"
+  end
+
+  add_foreign_key "person_company_connections", "companies"
+  add_foreign_key "person_company_connections", "people"
 end
