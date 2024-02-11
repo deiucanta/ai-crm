@@ -79,6 +79,10 @@ test:
 #
 production:
   <<: *default
-  database: untitled_production
-  username: untitled
-  password: <%= ENV["UNTITLED_DATABASE_PASSWORD"] %>
+  host: localhost
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  database: production_database
+  username: <%= Rails.application.credentials.dig(:database, :user) %>
+  password: <%= Rails.application.credentials.dig(:database, :password) %>
