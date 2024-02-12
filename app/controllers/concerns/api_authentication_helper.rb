@@ -12,7 +12,7 @@ module ApiAuthenticationHelper
     bearer_token = extract_bearer_token(request.headers['Authorization'])
 
     if bearer_token
-      @access_token = AccessToken.find_by(bearer_token: bearer_token, status: 'active')
+      @access_token = ApiKey.find_by(bearer_token: bearer_token, status: 'active')
       unless @access_token
         render json: { error: 'Unauthorized' }, status: :unauthorized
       end
