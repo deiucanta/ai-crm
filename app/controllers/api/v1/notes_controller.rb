@@ -28,8 +28,7 @@ class Api::V1::NotesController < Api::V1::BaseController
 
   def set_notable
     @notable = params[:notable_type].classify.constantize.find(params[:notable_id])
-  rescue NameError
-    render json: { error: 'Invalid notable type' }, status: :unprocessable_entity
+    render json: { error: 'Invalid notable type' }, status: :unprocessable_entity if @notable.blank?
   end
 
   def note_params
