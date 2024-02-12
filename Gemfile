@@ -80,3 +80,5 @@ gem "slim-rails"
 gem "foreman"
 
 gem "ransack", "~> 4.1"
+
+gem "kaminari", "~> 1.2"
