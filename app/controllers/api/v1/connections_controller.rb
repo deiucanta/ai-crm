@@ -22,7 +22,7 @@ class Api::V1::ConnectionsController < Api::V1::BaseController
   private
 
   def fetch_records
-    @person = Person.find(params[:person]) if params[:person_id]
+    @person = Person.find(params[:person_id]) if params[:person_id]
     @company = Company.find(params[:company_id])
   end
 
