@@ -33,6 +33,6 @@ class Api::V1::NotesController < Api::V1::BaseController
   end
 
   def note_params
-    params.require(:note).permit(:content)
+    params.require(:note).permit(:body)
   end
 end

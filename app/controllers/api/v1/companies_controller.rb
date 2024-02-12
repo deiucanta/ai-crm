@@ -4,13 +4,14 @@ class Api::V1::CompaniesController < Api::V1::BaseController
   # :id, :created_at, :updated_at, :name, :status
   def index
     render json: Company
+                   .includes(:notes)
                    .all
                    .order_by(params[:sort_attribute], params[:sort_direction])
                    .page(params[:page]).per(params[:count])
   end
 
   def show
-    render json: Company.find(params[:id])
+    render json: Company.includes(:notes).find(params[:id])
   end
 
   def create

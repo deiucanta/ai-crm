@@ -18,5 +18,7 @@ namespace :v1 do
     resources :contact_methods
   end
 
+  resources :notes
+
   resources :connections, only: [:create, :destroy]
 end
