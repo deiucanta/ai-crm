@@ -32,18 +32,6 @@ class Api::V1::CompaniesController < Api::V1::BaseController
     end
   end
 
-  def search
-    # possible params could be:
-    # name_cont, created_at gt or lt, updated_at gt or lt, status_in
-    render json: Company
-                   .includes(:notes)
-                   .ransack(params[:q])
-                   .result
-                   .order_by(params[:sort_attribute], params[:sort_direction])
-                   .page(params[:page])
-                   .per(params[:count])
-  end
-
   def people
     company = Company.find(params[:id])
     render json: company.people

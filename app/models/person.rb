@@ -17,6 +17,8 @@ class Person < ApplicationRecord
 
   has_many :notes, as: :notable
 
+  has_many :contact_methods
+
   validates :first_name, :last_name, presence: true
 
   def self.ransackable_attributes(auth_object = nil)
@@ -24,7 +26,7 @@ class Person < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    []
+    reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
 end

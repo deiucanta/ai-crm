@@ -1,17 +1,14 @@
 namespace :v1 do
+
+  get 'search', to: 'search#index'
+
   resources :companies do
-    collection do
-      post :search
-    end
     member do
       get :people
     end
   end
 
   resources :people do
-    collection do
-      post :search
-    end
     member do
       get :companies
     end
@@ -19,6 +16,5 @@ namespace :v1 do
   end
 
   resources :notes
-
   resources :connections, only: [:create, :destroy]
 end

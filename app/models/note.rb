@@ -17,4 +17,12 @@ class Note < ApplicationRecord
   belongs_to :notable, polymorphic: true
 
   validates :body, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "body", "status", "updated_at"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    reflect_on_all_associations.map { |a| a.name.to_s }
+  end
 end

@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string
-#  status     :integer          default(0)
+#  status     :integer          default("active")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -26,7 +26,7 @@ class Company < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    []
+    reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
 end
