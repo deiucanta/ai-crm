@@ -1,0 +1,15 @@
+  openapi: 3.0.0
+  info:
+    title: CRM.gpt
+    version: 0.1.0
+  paths:
+    /people:
+      $ref: './paths/people.yaml'
+
+  components:
+    schemas:
+      Person:
+        $ref: './components/person.yaml'
+
+#    parameters:
+#      $ref: './parameters/page_param'

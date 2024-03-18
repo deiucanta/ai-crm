@@ -1,28 +1,12 @@
 class Api::V1::PeopleController < Api::V1::BaseController
 
+
   def index
-    render json: Person
-                   .includes(:notes)
-                   .all
-                   .order_by(params[:sort_attribute], params[:sort_direction])
-                   .page(params[:page]).per(params[:count])
+    render json: paginate_and_render(Note, params)
   end
 
   def show
-    render json: Person.includes(:notes).find(params[:id])
-  end
-
-  def search
-    # ransack methods
-    # created_at and updated_at greater_than or less_than
-    # first or last name contains
-    render json: Person
-                   .includes(:notes)
-                   .ransack(params[:q])
-                   .result
-                   .order_by(params[:sort_attribute], params[:sort_direction])
-                   .page(params[:page])
-                   .per(params[:count])
+    render json: Person.find(params[:id])
   end
 
   def create

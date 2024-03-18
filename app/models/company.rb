@@ -29,4 +29,8 @@ class Company < ApplicationRecord
     reflect_on_all_associations.map { |a| a.name.to_s }
   end
 
+  def ransortable_attributes(auth_object = nil)
+    ransackable_attributes(auth_object)
+  end
+
 end

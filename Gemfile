@@ -82,3 +82,5 @@ gem "foreman"
 gem "ransack", "~> 4.1"
 
 gem "kaminari", "~> 1.2"
+
+gem "faker", "~> 3.2"

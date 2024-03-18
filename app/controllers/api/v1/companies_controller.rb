@@ -3,11 +3,7 @@ class Api::V1::CompaniesController < Api::V1::BaseController
   # allowed sortable attributes:
   # :id, :created_at, :updated_at, :name, :status
   def index
-    render json: Company
-                   .includes(:notes)
-                   .all
-                   .order_by(params[:sort_attribute], params[:sort_direction])
-                   .page(params[:page]).per(params[:count])
+    render json: paginate_and_render(Person, params)
   end
 
   def show

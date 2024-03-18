@@ -1,0 +1,4 @@
+in: query
+name: page
+required: false
+description: an optional parameter which allows you to traverse paginated results

@@ -1,0 +1,4 @@
+in: query
+name: size
+required: false
+description: an optional parameter which allows the user to specify the number of results returned. 20 is the default.

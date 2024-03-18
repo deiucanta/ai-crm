@@ -2,13 +2,7 @@ class Api::V1::SearchController < Api::V1::BaseController
 
   before_action :set_model
   def index
-    @q = @model.ransack(search_params)
-    @results = @q.result(distinct: true)
-                 .order_by(params[:sort_attribute], params[:sort_direction])
-                 .page(params[:page])
-                 .per(params[:count])
-
-    render json: @results
+    render json: paginate_and_render(@model, params)
   end
 
 
